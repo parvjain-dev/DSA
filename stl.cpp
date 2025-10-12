@@ -171,8 +171,29 @@ void stackTutorial(){
     // st.pop();
    cout<<st.top()<<endl;
    cout<<st.size()<<endl;
-cout<<st.empty();
+    cout<<st.empty();
    //st1.swap(st2);
+}
+
+
+void queueLearn(){
+    //FIRST IN FIRST OUT
+//O(1)
+    queue<int> q;
+    q.push(12);
+    q.push(13);
+    q.push(14);
+    q.emplace(15);
+    cout << q.back() << endl;
+    q.back()+=5;
+
+    cout << q.back() << endl;
+
+    cout << q.front() << endl;
+
+    q.pop();
+
+    cout<<q.front()<<endl;
 }
 
 int main(){
@@ -183,6 +204,8 @@ int main(){
 
     // deqeueueLearn();
 
-    stackTutorial();
+    // stackTutorial();
+
+    queueLearn();
     return 0;
 }
