@@ -279,6 +279,20 @@ if (it != ml.end())
 //rest all the functions are same. 
 
 }
+
+void unorderedSet()
+{
+    //O(1) IN MOST OF THE CASES [WORST CASE (DOES NOT HAPPEN) O(N)]
+    //store unique but does not store in sorted order. random order.
+    unordered_set<int> set;
+
+    set.insert(12);
+    set.insert(143);
+    set.insert(10);
+    set.insert(18);
+    set.insert(20);
+
+}
 int main(){
 
     // pairs();
