@@ -320,6 +320,17 @@ void mapLearn(){
 
 
 }
+
+
+void multimapLearn(){
+    //EVERYTHING SAME AS MAP, ONLY IT CAN STORE DUPLICATE KEYS 
+    //ONLY MP[KEY] CANNOT BE USE HERE .
+}
+
+void unorderedMAPLearn()
+{
+   //SAME AS MAP . BUT NOT IN SORTED ORDER RANDOMIZE ORDER AND DON'T HAVE DUPLCATE ORDER. 
+}
 int main(){
 
     // pairs();
@@ -336,7 +347,7 @@ int main(){
     
     // setLearn();
 
-    mapLearn();
+    // mapLearn();
 
     return 0;
 }
