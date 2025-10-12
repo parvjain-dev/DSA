@@ -121,6 +121,21 @@ vector<int> ins(2,100); //{100,100}
 // v.empty(); //tells does your vector empty.
 
 }
+
+
+void listLearn(){
+    list<int> ls;
+
+    ls.push_back(2);
+    ls.emplace_back(4);
+
+    ls.push_front(5);
+    ls.emplace_front();
+
+    //rest functions are same as vector 
+    //begin, end, rbegin, rend, clear, insert, size, swap
+}
+
 int main(){
 
     // pairs();
