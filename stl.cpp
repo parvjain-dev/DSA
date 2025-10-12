@@ -243,7 +243,7 @@ void setLearn(){
     // cout<<cnt<<endl;
 
     //ERASE TAKES BOTH ELEMENT TO ERASE AND ITERATOR AS WELL. 
-    auto it = st.find(32);
+    auto it3 = st.find(32);
     st.erase(it); //constant time. 
 
     //ERASE ALSO TAKES START TO END RANGE. 
@@ -293,6 +293,33 @@ void unorderedSet()
     set.insert(20);
 
 }
+
+
+void mapLearn(){
+    //KEYS CAN BE OF ANY DATA TYPE 
+    //MAP STORES UNIQUE KEYS IN STORED ORDER 
+    //key, value pair we store. 
+    map<int, int> mp;
+    map<int, pair<int, int>> mp1;
+    map<pair<int, int> , int> mp2;
+
+    mp[1]=2; //on the key 1 can you store 2
+    mp.insert({100, 12}); // on the key 100 store 12
+
+    mp.emplace(3,1); // on the key 3 store 1
+    
+    mp2[{2,3}]=12;
+    mp1[12]={89,90};
+    // cout<<mp[3] <<" "<<mp[100]<<" "<<mp2[{2,3}];
+
+    // for(auto it:mp){
+    //     cout<<it.first<<" "<<it.second<<endl;
+    // }
+
+    auto it = mp.find(12); //IN FIND PASS KEY . "IT" WILL POINT TO THAT LOCATION.
+
+
+}
 int main(){
 
     // pairs();
@@ -309,6 +336,7 @@ int main(){
     
     // setLearn();
 
+    mapLearn();
 
     return 0;
 }
