@@ -329,7 +329,77 @@ void multimapLearn(){
 
 void unorderedMAPLearn()
 {
-   //SAME AS MAP . BUT NOT IN SORTED ORDER RANDOMIZE ORDER AND DON'T HAVE DUPLCATE ORDER. 
+   //SAME AS MAP . BUT NOT IN SORTED ORDER RANDOMIZE ORDER AND DON'T HAVE DUPLCATE KEY. 
+}
+ bool comp(pair<int,int> p1, pair<int,int> p2){ //DON'T THINK ABOUT ARRAY JUST PICK UP 2 THINGS AND WORK
+    if (p1.second<p2.second)
+    {
+        true;
+    }
+    if (p1.second>p2.second) //INTERNALLY SWAPS
+    {
+        false;
+    }
+    if (p1.first>p2.second)
+    {
+        true;  //INTERNALLY LEAVE IT. 
+    }
+    
+    false;
+}
+void extra(){
+    //sort
+    //array  arr= {1,5,3,2}
+
+    int arr[] ={1,5,3,2};
+
+    for(auto it:arr){
+        cout<<it<<" ";
+    }
+    // sort(arr,arr+4);
+    // cout<<endl;
+    // for (auto it : arr)
+    // {
+    //     cout << it << " ";
+    // }
+
+    // 1 5 3 2
+    // 1 2 3 5
+
+    //sort(v.begin(),v.end());
+    //sort (arr+2,arr+4); //END GIVES ONE EXTRA THEN IT WILL TAKE EXTRA - 1 POSIITON
+
+    //SORT IN DESCENDING ORDER
+    // sort(arr, arr+4, greater<int>());
+    // for (auto it : arr)
+    // {
+    //     cout << it << " ";
+    // }
+
+    pair<int, int> a[] = {{1,2},{4,3},{1,5}};
+    //SORT IN MY WAY
+    //SORT IT ACCORDING TO SECOND ELEMENT
+    //IF SECOND ELEMENT IS SAME THEN SORT BASED ON FIRST ELEMENT ACCORDING TO DESCEDING
+
+  
+
+    //sort(a, a+n , comp); //COMP(boolean funtion) IS SELF WRITTEN COMPARATER LIKE greater<int>
+
+    // int num = 7;
+    // int cnt = __builtin_popcount(num); // 7 BINARY = 000000...0000111 32BITS , GIVES NUMBER OF 1 IN THE BINARY 
+
+    // long long num1= 124524523441;
+    // int cnt1 = __builtin_popcountll(num1); 
+
+    string s = "123"; //GOOD TO HAVE SORTED ORDER. 
+    do
+    {
+        cout<<s<<endl;
+    } while (next_permutation(s.begin(),s.end()));
+    
+    //maximum element from array
+    //int maxi = *max_element(a,a+n);
+
 }
 int main(){
 
@@ -348,6 +418,8 @@ int main(){
     // setLearn();
 
     // mapLearn();
+
+    // extra();
 
     return 0;
 }
