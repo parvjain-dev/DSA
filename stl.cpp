@@ -196,6 +196,26 @@ void queueLearn(){
     cout<<q.front()<<endl;
 }
 
+
+void priorityq(){
+    //largest value stays at the top. (max heap)
+    priority_queue<int> pq; 
+
+    pq.push(5); //{5}
+    pq.push(2); //{5,2}
+    pq.push(6);//{6,5,2}
+    pq.emplace(10); //{10,6,5,2}
+
+    cout<<pq.top()<<endl;
+
+    //minimum value at the top (min heap)
+    priority_queue<int, vector<int>, greater<int>> pqmin;
+
+    pqmin.push(5);
+    pqmin.push(2);
+    pqmin.push(10);
+    cout<<pqmin.top()<<endl;
+}
 int main(){
 
     // pairs();
@@ -206,6 +226,9 @@ int main(){
 
     // stackTutorial();
 
-    queueLearn();
+    // queueLearn();
+
+    priorityq();
+    
     return 0;
 }
