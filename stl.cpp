@@ -216,6 +216,40 @@ void priorityq(){
     pqmin.push(10);
     cout<<pqmin.top()<<endl;
 }
+
+
+void setLearn(){
+    //STORES EVERYTHING IN SORTED ORDER AND UNIQUE . 
+    //tree is maintained not a linear container
+    set<int>st;
+    st.insert(1);
+    st.insert(32);
+    st.insert(-3);
+    st.insert(14);
+    st.insert(14);//will not store this as it is already present
+    st.insert(20);
+
+    //begin() , end(), rbegin(), rend(), size(), empty() and swap() are same as those of above
+
+    auto it= st.find(3); //if element is not present in the set it points to next to last ele. 
+    // cout<<*it<<endl;
+
+    auto it2 = st.find(14); 
+    // cout << *it2 << endl;
+
+    // st.erase(-3); //erase 5 takes log time. 
+
+    int cnt= st.count(14);
+    // cout<<cnt<<endl;
+
+    //ERASE TAKES BOTH ELEMENT TO ERASE AND ITERATOR AS WELL. 
+    auto it = st.find(32);
+    st.erase(it); //constant time. 
+
+    //ERASE ALSO TAKES START TO END RANGE. 
+}
+
+
 int main(){
 
     // pairs();
@@ -228,7 +262,8 @@ int main(){
 
     // queueLearn();
 
-    priorityq();
+    // priorityq();
     
+    setLearn();
     return 0;
 }
