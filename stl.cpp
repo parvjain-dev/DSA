@@ -154,6 +154,25 @@ void deqeueueLearn(){
     // for(auto it: dq){
     //     cout<<it<<" ";
     // }
+
+    //rest functions as same as vector .
+}
+
+void stackTutorial(){
+    //LAST IN FIRST OUT. 
+//ALL THE OPERATIONS ARE O(1) OPS. 
+    stack<char> st;
+    st.emplace('p');
+    st.push('a');
+    st.emplace('r');
+    st.emplace('v');
+
+
+    // st.pop();
+   cout<<st.top()<<endl;
+   cout<<st.size()<<endl;
+cout<<st.empty();
+   //st1.swap(st2);
 }
 
 int main(){
@@ -162,6 +181,8 @@ int main(){
 
     // vectorLearn();
 
-    deqeueueLearn();
+    // deqeueueLearn();
+
+    stackTutorial();
     return 0;
 }
