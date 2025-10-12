@@ -136,10 +136,32 @@ void listLearn(){
     //begin, end, rbegin, rend, clear, insert, size, swap
 }
 
+
+void deqeueueLearn(){
+    deque<int> dq;
+    dq.push_back(2);
+    dq.emplace_back(4);
+
+    dq.push_front(3);
+    dq.emplace_front(67);
+
+    // dq.pop_back();
+    // dq.pop_front();
+
+    // cout<<dq.back();
+    // cout<<dq.front();
+
+    // for(auto it: dq){
+    //     cout<<it<<" ";
+    // }
+}
+
 int main(){
 
     // pairs();
 
-    vectorLearn();
+    // vectorLearn();
+
+    deqeueueLearn();
     return 0;
 }
