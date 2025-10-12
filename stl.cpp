@@ -250,6 +250,35 @@ void setLearn(){
 }
 
 
+void multisetLearn(){
+//EVERYTHING SAME AS SET BUT ALSO STORE DUPLICATE VALUES. 
+
+multiset<int> ml;
+ml.insert(12);
+ml.insert(12);
+ml.insert(1);
+ml.insert(89);
+ml.insert(50);
+
+ml.erase(12); //ALL 12 ARE ERASED. 
+
+int cnt= ml.count(12);
+
+ml.erase(ml.find(12)); //erase only one 12
+
+ml.erase(ml.find(12),ml.find(50) );
+
+// erase that element and the next one:
+auto it = ml.find(12);
+if (it != ml.end())
+{
+    auto next_it = it;
+    ++next_it;             // move iterator forward by one
+    ml.erase(it, next_it); // erase range [it, next_it)
+}
+//rest all the functions are same. 
+
+}
 int main(){
 
     // pairs();
@@ -264,6 +293,8 @@ int main(){
 
     // priorityq();
     
-    setLearn();
+    // setLearn();
+
+
     return 0;
 }
