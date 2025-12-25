@@ -1,46 +1,36 @@
 class Solution {
 public:
-    void merge(vector<int>& v, int low, int mid, int high) {
+void quickSort(vector<int> &arr, int low, int high)
+{
+    if (low < high)
+    {
         int i = low;
-        int j = mid + 1;
-        vector<int> temp;
-
-        while (i <= mid && j <= high) {
-            if (v[i] < v[j]) {
-                temp.push_back(v[i]);
+        int j = high;
+        int pivot = arr[low];
+        while (i < j)
+        {
+            while (i <high && arr[i] <= pivot)
+            {
                 i++;
-            } else {
-                temp.push_back(v[j]);
-                j++;
+            }
+            while (j > low && arr[j] > pivot)
+            {
+                j--;
+            }
+            if (i < j)
+            {
+                swap(arr[i], arr[j]);
             }
         }
-        while (i <= mid) {
-            temp.push_back(v[i]);
-            i++;
-        }
-        while (j <= high) {
-            temp.push_back(v[j]);
-            j++;
-        }
-
-        for (int k = low; k <= high; k++) {
-            v[k] = temp[k - low];
-        }
+        swap(arr[low], arr[j]);
+        int partition = j;
+        quickSort(arr, low, partition - 1);
+        quickSort(arr, partition + 1, high);
     }
-    void mergeSort(vector<int>& v, int low, int high) {
-        if (low >= high )
-            return;
-        int mid = (low + high) / 2;
-        // cout<<low<<" "<<mid<<" "<<mid+1<<" "<<high<<" "<<endl;
-        mergeSort(v, low, mid);
-        mergeSort(v, mid + 1, high);
+}
 
-        merge(v, low, mid, high);
-    }
     vector<int> sortArray(vector<int>& nums) {
-
-        
-        mergeSort(nums, 0, nums.size()-1);
+        quickSort(nums, 0, nums.size()-1);
         return nums;
     }
 };
