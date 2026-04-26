@@ -1,24 +1,17 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int i =0, j= 1;
+        int reader=1, writer=1;
 
-        while(j<nums.size()){
-            if(nums[i]==nums[j]){
-                j++;
+        while(reader<nums.size()){
+            if(nums[reader]==nums[writer-1]){
+                reader++;
+            }else{
+                nums[writer]=nums[reader];
+                reader++;
+                writer++;
             }
-            else{
-                i++;
-                swap(nums[i],nums[j]);
-                j++;
-            }
-
         }
-        int ans=0; 
-        for(int k=0; k<=i; k++){
-            ans++;
-        }
-        return ans;
-
+        return writer;
     }
 };
