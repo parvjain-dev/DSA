@@ -1,20 +1,23 @@
 name: Sync LeetCode to GitHub
 
 on:
-  workflow_dispatch:      # Allows you to click a button to sync
+  workflow_dispatch:
   schedule:
-    - cron: '0 8 * * *'   # Runs automatically every day at 8:00 AM
+    - cron: '30 14 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Sync Code
         uses: joshcai/leetcode-sync@v1.7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Using your PAT instead of the default token gets you the green squares
+          github-token: ${{ secrets.LEETCODE_SYNC_TOKEN }}
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
           leetcode-session: ${{ secrets.LEETCODE_SESSION }}
           destination-folder: solutions
-          filename-format: "leetcode" # Names files like '1-two-sum.py'
+          # 'filename-format' is removed as it's not a valid input for this version
