@@ -1,20 +1,26 @@
 class Solution {
 public:
     int leastBricks(vector<vector<int>>& wall) {
-        int totalrows=wall.size();
+        long long sum =0; 
         unordered_map<long long,int> mp;
-        long long position=0;
-        for(int i=0; i<wall.size(); i++ ){
-            for(int j=0;j< wall[i].size()-1; j++){
-                position += wall[i][j];
-                mp[position]++;
+
+        for(int i=0; i<wall.size(); i++){
+            for(int j=0; j<wall[i].size()-1; j++){
+                sum+=wall[i][j];
+                mp[sum]++;
+
             }
-            position =0;
+            sum=0;
         }
         int maxi= 0;
-        for(auto it:mp){
-            maxi=max(maxi, it.second);
+        int ans=0;
+        for(auto it :mp){
+            if(maxi<it.second){
+                maxi=it.second;
+                ans= it.first;
+            }
         }
-        return totalrows- maxi;
+        // cout<<maxi;
+        return wall.size()-maxi;
     }
 };
