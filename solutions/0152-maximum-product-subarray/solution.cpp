@@ -1,25 +1,21 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-        int maxEnding = nums[0];
-        int minEnding=nums[0];
-        int ans=nums[0];
-        int j=1;
-        int temp, temp2 ;
-        while(j<nums.size()){
-            int v1 = maxEnding*nums[j];
-            int v2= minEnding* nums[j];
+        int maxi = nums[0];
+        int mini = nums[0];
+        int prevMax = nums[0];
+        int preMin = nums[0];
+        int ans = nums[0];
 
-            int v3 = nums[j];
-            maxEnding= max(v3, max(v1,v2));
-            minEnding= min(v3, min(v1,v2));
-            cout<<maxEnding<<" "<<minEnding<<" "<<endl;
-            temp= max(maxEnding, minEnding);
-            // temp2= max(temp, nums[j]);
-            ans=max(ans, temp);
-            j++;
+        for (int i = 1; i < nums.size(); i++) {
+            prevMax = maxi;
+            preMin = mini;
+            mini = min(preMin * nums[i], min(prevMax * nums[i],nums[i]));
+
+            maxi = max(prevMax * nums[i], max(nums[i],preMin * nums[i]));
             
-            
+            int temp = max(maxi, mini);
+            ans = max(ans, temp);
         }
         return ans;
     }
