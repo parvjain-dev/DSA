@@ -1,21 +1,20 @@
 class Solution {
 public:
     int maximumSum(vector<int>& arr) {
-        int oneDelete= INT_MIN;
+        int oneDelete = INT_MAX;
         int noDelete = arr[0];
-        int ans = arr[0];
-
-        for(int i =1; i< arr.size(); i++){
-            int prevOnedelete = oneDelete;
-            int prevNoDelete=  noDelete;
-            int temp=INT_MIN;
-            if(prevOnedelete!=INT_MIN){
-                temp = prevOnedelete+arr[i];
+        int temp= arr[0];
+        int res = arr[0];
+        for (int i = 1; i < arr.size(); i++) {
+            int prevNoDel = noDelete;
+            int prevOneDel = oneDelete;
+            noDelete = max(prevNoDel + arr[i], arr[i]);
+            if(prevOneDel != INT_MAX) {
+                temp = prevOneDel+ arr[i];
             }
-            noDelete = max(prevNoDelete +arr[i], arr[i]);
-            oneDelete = max(temp, prevNoDelete);
-            ans = max(ans, max(noDelete, oneDelete));
+            oneDelete = max(prevNoDel, temp );
+            res = max(res, max(oneDelete, noDelete));
         }
-        return ans;
+        return res;
     }
 };
