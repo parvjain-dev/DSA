@@ -1,17 +1,23 @@
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        unordered_map<int, int> mp;
-
-        mp[0]++;
-        int prefix = 0;
-        int count = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            prefix += nums[i];
-            if (mp.count(prefix - k)) {
-                count += mp[prefix - k];
+        unordered_map<int,int> mp;
+        int sum =0; 
+        int count =0; 
+        mp[0]=1;
+        for(int i =0; i< nums.size(); i++){
+            sum+= nums[i];
+            
+            if(mp.count(sum-k)){
+                // cout<<mp[sum]<<" ";
+                count= count+ mp[sum-k];
             }
-            mp[prefix]++;
+            mp[sum]++;
+            
+           
+        }
+        for(auto it:mp){
+            cout<<it.first<<" "<<it.second<<endl;
         }
         return count;
     }
