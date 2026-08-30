@@ -3,17 +3,25 @@ public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         vector<vector<int>> res;
         sort(intervals.begin(), intervals.end());
-        res.push_back(intervals[0]);
-        int index=0;
-        for(int i =1; i< intervals.size(); i++){
-            if(res[index][1] >= intervals[i][0]){
-                res[index][1] = max(res[index][1], intervals[i][1]);
+        for(int i =0; i< intervals.size(); i++){
+            int start = intervals[i][0], end = intervals[i][1];
+
+            if(!res.empty() && res.back()[1] >= end){
+                continue;
             }
             else{
-                res.push_back(intervals[i]);
-                index++;
+                for(int j=i+1; j< intervals.size(); j++){
+                    if(intervals[j][0]<= end){
+                        end=max(intervals[j][1], end);
+                    }
+                    else{
+                        break;
+                    }
+                }
             }
+            res.push_back({start,end});
         }
+
         return res;
     }
 };
