@@ -1,24 +1,31 @@
 class Solution {
+
 public:
     vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
-        long long  len = grid.size()*grid.size();
-        long long expSum = (len*(len+1))/2, expSqSum = (len*(len+1)*(2*len+1))/6;
-        long long orgSum =0, orgSqSum =0;
-        int count =0; 
-       
-        for(int i =0; i< grid.size(); i++){
-            for(int j=0; j< grid[0].size();j++){
-                orgSum+= (long long)grid[i][j];
-                orgSqSum += (long long)grid[i][j] *(long long)grid[i][j];
+
+        vector<int> res(2, 0);
+        int temp_Sum = 0, org_Sum = 0;
+        long long temp_Sqr_Sum = 0;
+        long long org_Sqr_Sum = 0;
+        int n = grid.size() * grid.size();
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid.size(); j++) {
+                temp_Sum += grid[i][j];
+                temp_Sqr_Sum += grid[i][j] * grid[i][j];
             }
         }
-        long long diff = orgSum - expSum;
+        org_Sum = (n * (n + 1)) / 2;
+        org_Sqr_Sum = (n * (n + 1));
+        org_Sqr_Sum = (org_Sqr_Sum * (2 * n + 1)) / 6;
 
-        long long sqDiff = orgSqSum-expSqSum;
-        sqDiff= sqDiff/diff;
-         long long repNum = (diff+sqDiff)/2;
-         long long missNum = sqDiff- repNum;
+        int equa_1 = org_Sum - temp_Sum;
+        int equa_2 = org_Sqr_Sum - temp_Sqr_Sum;
+        equa_2 /= equa_1;
 
-        return {(int)repNum,(int)missNum};
+        int repeating = (equa_1 + equa_2) / 2;
+
+        int missing = repeating - equa_1;
+
+        return {missing, repeating};
     }
 };
