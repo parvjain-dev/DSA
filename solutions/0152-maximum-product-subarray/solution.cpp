@@ -1,22 +1,35 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-        int maxi = nums[0];
-        int mini = nums[0];
-        int prevMax = nums[0];
-        int preMin = nums[0];
-        int ans = nums[0];
+        int prefix = 1, suffix = 1;
+        int preMax = INT_MIN, suffMax = INT_MIN;
+        bool flag_Zero = false;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == 0) {
 
-        for (int i = 1; i < nums.size(); i++) {
-            prevMax = maxi;
-            preMin = mini;
-            mini = min(preMin * nums[i], min(prevMax * nums[i],nums[i]));
+                flag_Zero = true;
+                prefix = 1;
+                preMax = max(preMax, nums[i]);
 
-            maxi = max(prevMax * nums[i], max(nums[i],preMin * nums[i]));
-            
-            int temp = max(maxi, mini);
-            ans = max(ans, temp);
+                continue;
+            }
+            prefix *= nums[i];
+            preMax = max(preMax, prefix);
         }
-        return ans;
+
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            if (nums[i] == 0) {
+                flag_Zero = true;
+                suffix = 1;
+                suffMax = max(suffMax, nums[i]);
+
+                continue;
+            }
+            suffix *= nums[i];
+            suffMax = max(suffMax, suffix);
+        }
+        cout << suffMax << " " << preMax;
+        // if((suffMax<0 && preMax<0) && flag_Zero) return 0;
+        return max(suffMax, preMax);
     }
 };
