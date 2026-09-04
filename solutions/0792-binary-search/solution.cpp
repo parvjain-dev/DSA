@@ -1,20 +1,22 @@
 class Solution {
-public:
-    int BS_rec(vector<int>& nums, int target, int low, int high) {
-        int mid = (low + high) / 2;
-        int ans =-1;
+private:
+    int binary_Search(vector<int>& nums, int low, int high, int target) {
         if (low > high)
             return -1;
-
+        int mid = low + (high - low) / 2;
         if (nums[mid] > target)
-            return BS_rec(nums, target, 0, mid - 1);
-        else if (nums[mid] < target) {
-            cout << mid;
-            return BS_rec(nums, target, mid + 1, high);
-        } else
+            return binary_Search(nums, low, mid - 1, target);
+        else if (nums[mid] < target)
+            return binary_Search(nums, mid + 1, high, target);
+        else {
             return mid;
+        }
     }
+
+public:
     int search(vector<int>& nums, int target) {
-        return BS_rec(nums, target, 0, nums.size() - 1);
+        int low = 0, high = nums.size() - 1;
+
+        return binary_Search(nums, low, high, target);
     }
 };
