@@ -1,66 +1,37 @@
 class Solution {
-private:
-    double median(vector<int>& nums1, vector<int>& nums2) {
-        int m = nums1.size(), n = nums2.size();
-        int total = m+n;
-        int pos1 = (total) / 2;
-        int pos2 = (total - 1)/2;
-        int count = 0;
-        int ans1 = -1, ans2 = -1;
-        int i = 0, j = 0;
-        while (i < m && j < n) {
-            if (nums1[i] <= nums2[j]) {
-
-                if (count == pos1) {
-                    ans1 = nums1[i];
-                }
-                if (count == pos2) {
-                    ans2 = nums1[i];
-                }
-                count++;
-                i++;
-            } else {
-
-                if (count == pos1) {
-                    ans1 = nums2[j];
-                }
-                if (count == pos2) {
-                    ans2 = nums2[j];
-                }
-                count++;
-                j++;
-            }
-        }
-        while (i < m) {
-
-            if (count == pos1) {
-                ans1 = nums1[i];
-            }
-            if (count == pos2) {
-                ans2 = nums1[i];
-            }
-            count++;
-            i++;
-        }
-        while (j < n) {
-
-            if (count == pos1) {
-                ans1 = nums2[j];
-            }
-            if (count == pos2) {
-                ans2 = nums2[j];
-            }
-            count++;
-            j++;
-        }
-        double ans = (double)(ans1+ans2)/2;
-        return ans;
-    }
-
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        if(nums1.size()>nums2.size()) return findMedianSortedArrays(nums2,nums1);
+        int low = 0, high = nums1.size();
 
-        return median(nums1,nums2);
+        int ans1 = -1, ans2 = -1;
+        int total = nums1.size() + nums2.size();
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int j = ((total + 1) / 2) - mid;
+            // all number from nums2
+            int left1 = INT_MIN, left2 = INT_MIN;
+            int right1 = INT_MAX, right2 = INT_MAX;
+
+            if (mid < nums1.size())
+                right1 = nums1[mid];
+            if (j < nums2.size())
+                right2 = nums2[j];
+            if (mid - 1 >= 0)
+                left1 = nums1[mid - 1];
+            if (j - 1 >= 0)
+                left2 = nums2[j - 1];
+            if (left1 > right2) {
+                high = mid - 1;
+            } else if (left2 > right1) {
+                low = mid + 1;
+            } else {
+                if(total%2==1) return max(left1,left2);
+                return ((double)(max(left1,left2)+min(right1,right2)))/2.0;
+            }
+        }
+        
         return 0;
     }
 };
